@@ -1,7 +1,7 @@
   
     // alert("string")
    // Initial array of movies
-   var subjects = ["The Matrix", "The Notebook", "Mr. Nobody", "The Lion King"];
+   var subjects = ["Cooking", "Snowboarding", "Soccer", "Philosophy", "Guitar", "Books", "History", "Bicyle", "Movies", "Comedy"];
 
    // displayMovieInfo function re-renders the HTML to display the appropriate content
    function displayMovieInfo() {
@@ -41,44 +41,8 @@
         // Prependng the animalDiv to the HTML page in the "#gifs-appear-here" div
         $("#gifdump").prepend(subjectDiv);
       }
-       // Storing the rating data
-    //    var rating = response.Rated;
-
-       // Creating an element to have the rating displayed
-    //    var pOne = $("<p>").text("Rating: " + rating);
-
-    //    // Displaying the rating
-    //    movieDiv.append(pOne);
-
-    //    // Storing the release year
-    //    var released = response.Released;
-
-    //    // Creating an element to hold the release year
-    //    var pTwo = $("<p>").text("Released: " + released);
-
-    //    // Displaying the release year
-    //    movieDiv.append(pTwo);
-
-    //    // Storing the plot
-    //    var plot = response.Plot;
-
-    //    // Creating an element to hold the plot
-    //    var pThree = $("<p>").text("Plot: " + plot);
-
-    //    // Appending the plot
-    //    movieDiv.append(pThree);
-
-    //    // Retrieving the URL for the image
-    //    var imgURL = response.Poster;
-
-    //    // Creating an element to hold the image
-    //    var image = $("<img>").attr("src", imgURL);
-
-    //    // Appending the image
-    //    movieDiv.append(image);
-
-    //    // Putting the entire movie above the previous movies
-       $("#gifdump").prepend(movieDiv);
+  
+    //    $("#gifdump").prepend(movieDiv);
       });
 
     }
@@ -94,12 +58,12 @@
      for (var i = 0; i < subjects.length; i++) {
         // console.log("rederButtonscalled")
         console.log(subjects[i])
-            // Console.log(movies[i])
+            // Console.log(subjects[i])
        // Then dynamicaly generating buttons for each movie in the array
        // This code $("<button>") is all jQuery needs to create the beginning and end tag. (<button></button>)
        var a = $("<button>");
        // Adding a class of movie-btn to our button
-       a.addClass("movie-btn");
+       a.addClass("subject-btn");
        // Adding a data-attribute
        a.attr("data-name", subjects[i]);
        // Providing the initial button text
@@ -107,7 +71,6 @@
        // Adding the button to the buttons-view div
        $("#subjectbuttons").append(a);
 
-    //    $(".movie-btn").on("click", displayMovieInfo());
-
+    
             }
     }

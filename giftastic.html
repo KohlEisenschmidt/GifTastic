@@ -58,16 +58,16 @@
         // This line grabs the input from the textbox
         var movie = $("#subject-input").val().trim();
         console.log(subjects)
-        // Adding movie from the textbox to our array
+        // Adding subject from the textbox to our array
         subjects.push(movie);
         console.log(subjects)
         
-        // Calling renderButtons which handles the processing of our movie array
+        // Calling renderButtons which handles the processing of our subject array
         renderButtons();
         });
         
         // Adding a click event listener to all elements with a class of "movie-btn"
-        $(document).on("click", ".movie-btn", displayMovieInfo);
+        $(document).on("click", ".subject-btn", displayMovieInfo);
         
         // Calling the renderButtons function to display the intial buttons
             
