@@ -48,7 +48,33 @@
                 </form>
             </div>
         </div>
-
+        <script>
+    
+        // This function handles events where a movie button is clicked
+        $(document).on("click","#add-subject", function(event) {
+            // $("#add-subject").on("click", function(event) {
+        
+        event.preventDefault();
+        // This line grabs the input from the textbox
+        var movie = $("#subject-input").val().trim();
+        console.log(subjects)
+        // Adding movie from the textbox to our array
+        subjects.push(movie);
+        console.log(subjects)
+        
+        // Calling renderButtons which handles the processing of our movie array
+        renderButtons();
+        });
+        
+        // Adding a click event listener to all elements with a class of "movie-btn"
+        $(document).on("click", ".movie-btn", displayMovieInfo);
+        
+        // Calling the renderButtons function to display the intial buttons
+            
+        
+                 
+                 renderButtons();
+                 </script>
 
     </div>
     

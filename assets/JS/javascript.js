@@ -6,9 +6,10 @@
    // displayMovieInfo function re-renders the HTML to display the appropriate content
    function displayMovieInfo() {
     // alert("sadf")
-     var movie = $(this).attr("data-name");
-     var queryURL = "https://www.omdbapi.com/?t=" + movie + "&y=&plot=short&apikey=trilogy";
-    // console.log(movie, queryURL)
+     var data = $(this).attr("data-name");
+     var queryURL = "https://api.giphy.com/v1/gifs/search?q=" + data + 
+                    "&api_key=0gX4VWNzgcQt8jUocK9aVd9Pz5XzSiXo&limit=10";
+    console.log(data, queryURL)
      // Creating an AJAX call for the specific movie button being clicked
      $.ajax({
        url: queryURL,
@@ -17,8 +18,29 @@
         .then(function(response) {
 
        // Creating a div to hold the movie
-    //    var movieDiv = $("<div class='movie'>");
+       var movieDiv = $("<div class='movie'>");
+       var results = response.data;
 
+       for (var i = 0; i < results.length; i++) {
+
+        // Creating and storing a div tag
+        var subjectDiv = $("<div>");
+
+        // Creating a paragraph tag with the result item's rating
+        var p = $("<p>").text("Rating: " + results[i].rating);
+
+        // Creating and storing an image tag
+        var subjectImage = $("<img>");
+        // Setting the src attribute of the image to a property pulled off the result item
+        subjectImage.attr("src", results[i].images.fixed_height.url);
+
+        // Appending the paragraph and image tag to the animalDiv
+        subjectDiv.append(p);
+        subjectDiv.append(subjectImage);
+
+        // Prependng the animalDiv to the HTML page in the "#gifs-appear-here" div
+        $("#gifdump").prepend(subjectDiv);
+      }
        // Storing the rating data
     //    var rating = response.Rated;
 
@@ -56,20 +78,22 @@
     //    movieDiv.append(image);
 
     //    // Putting the entire movie above the previous movies
-    //    $("#movies-view").prepend(movieDiv);
-    //  });
+       $("#gifdump").prepend(movieDiv);
+      });
 
-//    }
+    }
 
    // Function for displaying movie data
    function renderButtons() {
-
+    console.log("rederButtonscalled")
      // Deleting the movies prior to adding new movies
      // (this is necessary otherwise you will have repeat buttons)
      $("#subjectbuttons").empty();
    
      // Looping through the array of movies
      for (var i = 0; i < subjects.length; i++) {
+        // console.log("rederButtonscalled")
+        console.log(subjects[i])
             // Console.log(movies[i])
        // Then dynamicaly generating buttons for each movie in the array
        // This code $("<button>") is all jQuery needs to create the beginning and end tag. (<button></button>)
@@ -82,26 +106,8 @@
        a.text(subjects[i]);
        // Adding the button to the buttons-view div
        $("#subjectbuttons").append(a);
-     }
-   }
 
-   // This function handles events where a movie button is clicked
-   $(document).on("click","#add-subject", function(event) {
-    
-    event.preventDefault();
-     // This line grabs the input from the textbox
-     var movie = $("#subject-input").val().trim();
-    // console.log(movie)
-     // Adding movie from the textbox to our array
-     subjects.push(movie);
-    //  console.log(movies)
-    
-     // Calling renderButtons which handles the processing of our movie array
-     renderButtons();
-   });
+    //    $(".movie-btn").on("click", displayMovieInfo());
 
-   // Adding a click event listener to all elements with a class of "movie-btn"
-   $(document).on("click", ".movie-btn", displayMovieInfo);
-
-   // Calling the renderButtons function to display the intial buttons
-   renderButtons();
+            }
+    }
